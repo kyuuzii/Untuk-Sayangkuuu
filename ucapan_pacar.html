@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ucapan Romantis untuk Pacar</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 0; padding: 0; background: #ffe6eb; display: flex; justify-content: center; align-items: center; min-height: 100vh; transition: background 0.5s;}
+    .card {background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 500px; text-align: center;}
+    h1 {color: #e6005c;}
+    textarea, input, select {width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc;}
+    button {background: #e6005c; color: #fff; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;}
+    button:hover {background: #cc0052;}
+    .preview {margin-top: 20px; padding: 20px; border-radius: 12px; background: #fff0f6; box-shadow: inset 0 0 10px rgba(0,0,0,0.05); position: relative; overflow: hidden;}
+    .heart {position: absolute; width: 20px; height: 20px; background: red; transform: rotate(45deg); animation: fall 4s linear infinite;}
+    .heart:before, .heart:after {content: ""; position: absolute; width: 20px; height: 20px; background: red; border-radius: 50%;}
+    .heart:before {top: -10px; left: 0;}
+    .heart:after {left: 10px; top: 0;}
+    @keyframes fall {
+      0% {top: -20px; opacity: 1;}
+      100% {top: 400px; opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Ucapan untuk Pacar ❤️</h1>
+    <input type="text" id="nama" placeholder="Nama pacar" value="Sayangku">
+    <textarea id="pesan">Kamu adalah alasan senyumku setiap hari. Terima kasih sudah selalu ada untukku.</textarea>
+    <select id="tema">
+      <option value="pink">Pink Romantis</option>
+      <option value="biru">Biru Tenang</option>
+      <option value="hitam">Malam Elegan</option>
+    </select>
+    <button onclick="buatUcapan()">Buat Ucapan</button>
+    <div class="preview" id="preview">
+      <h2 id="outputNama">Untuk: Sayangku</h2>
+      <p id="outputPesan">Kamu adalah alasan senyumku setiap hari. Terima kasih sudah selalu ada untukku.</p>
+    </div>
+  </div>
+
+  <script>
+    function buatUcapan(){
+      const nama = document.getElementById('nama').value;
+      const pesan = document.getElementById('pesan').value;
+      const tema = document.getElementById('tema').value;
+      document.getElementById('outputNama').innerText = "Untuk: " + nama;
+      document.getElementById('outputPesan').innerText = pesan;
+
+      // Ganti tema background
+      if(tema === 'pink') document.body.style.background = '#ffe6eb';
+      if(tema === 'biru') document.body.style.background = '#e6f0ff';
+      if(tema === 'hitam') document.body.style.background = '#1a1a1a';
+
+      // Tambah animasi hati jatuh
+      for(let i=0; i<6; i++){
+        let heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (Math.random()*3+2) + 's';
+        document.getElementById('preview').appendChild(heart);
+        setTimeout(()=>heart.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>
